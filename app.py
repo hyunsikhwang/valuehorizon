@@ -1,5 +1,6 @@
 import streamlit as st
 import base64
+import os
 from config import APPS, PORTAL_TITLE, PORTAL_SUBTITLE
 
 # Page Configuration
@@ -11,172 +12,130 @@ st.set_page_config(
 )
 
 def get_base64_of_bin_file(bin_file):
+    if not os.path.exists(bin_file):
+        return ""
     with open(bin_file, 'rb') as f:
         data = f.read()
     return base64.b64encode(data).decode()
 
-def set_png_as_page_bg(bin_file):
-    bin_str = get_base64_of_bin_file(bin_file)
-    page_bg_img = '''
-    <style>
-    .stApp {
-      background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("data:image/png;base64,%s");
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-    }
-    </style>
-    ''' % bin_str
-    st.markdown(page_bg_img, unsafe_allow_html=True)
-
-# Custom CSS for Premium Glassmorphism Design
+# Custom CSS for Light Mode and Stability
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
-    html, body, [class*="st-"] {
-        font-family: 'Outfit', sans-serif;
-    }
-
-    /* Set solid background for stability */
+    /* Global Light Mode Styles */
     .stApp {
-        background: #0e1117;
+        background-color: #fcfcfc;
+        color: #1a1a1a;
+        font-family: 'Inter', sans-serif;
     }
 
-    .main {
-        background: transparent !important;
+    [data-testid="stHeader"] {
+        background-color: rgba(255, 255, 255, 0);
     }
 
-    /* Header Styling */
+    /* Hero Section */
     .hero-container {
-        padding: 6rem 1rem 4rem 1rem;
+        padding: 4rem 1rem 3rem 1rem;
         text-align: center;
-        color: white;
     }
 
     .hero-title {
-        font-size: 4rem;
+        font-size: 3.5rem;
         font-weight: 700;
+        color: #111111;
         margin-bottom: 0.5rem;
-        background: linear-gradient(90deg, #ffffff, #888888);
-        -webkit-background-clip: text;
-        -webkit-fill-color: transparent;
-        letter-spacing: -1.5px;
+        letter-spacing: -1px;
     }
 
     .hero-subtitle {
-        font-size: 1.25rem;
-        font-weight: 300;
-        color: #aaaaaa;
-        max-width: 800px;
-        margin: 0 auto;
+        font-size: 1.1rem;
+        font-weight: 400;
+        color: #666666;
+        margin-bottom: 3rem;
     }
 
-    /* Card Grid - Improved Layout */
-    .card-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2.5rem;
-        padding: 0 2rem 4rem 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    /* Glass Card Styling */
-    .glass-card {
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 28px;
-        padding: 2.5rem 2rem;
-        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        text-decoration: none;
-        color: white !important;
+    /* Card Styling */
+    .app-card {
+        background: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 20px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        text-align: center;
-        height: 100%;
-        position: relative;
+        text-decoration: none;
+        color: inherit !important;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
     }
 
-    .glass-card:hover {
-        transform: translateY(-8px);
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    .app-card:hover {
+        transform: translateY(-5px);
+        border-color: #007aff;
+        box-shadow: 0 12px 24px rgba(0,0,0,0.08);
     }
 
-    /* Icon Container - Fixed Size and Centering */
-    .card-image-container {
-        width: 120px;
-        height: 120px;
-        border-radius: 20%;
-        overflow: hidden;
-        margin-bottom: 2rem;
-        background: rgba(255, 255, 255, 0.05);
+    /* Icon Styling - Small and Centered */
+    .icon-container {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 1.5rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-shrink: 0;
+        background: #f8f9fa;
+        border-radius: 16px;
     }
 
-    .card-image {
-        width: 80% !important;
-        height: 80% !important;
-        object-fit: contain !important;
-        transition: transform 0.5s ease;
+    .app-icon {
+        max-width: 50px;
+        max-height: 50px;
+        object-fit: contain;
     }
 
-    .glass-card:hover .card-image {
-        transform: scale(1.1);
-    }
-
-    .card-category {
-        font-size: 0.75rem;
-        font-weight: 600;
+    .app-category {
+        font-size: 0.7rem;
+        font-weight: 700;
         text-transform: uppercase;
-        color: #00d2ff;
-        margin-bottom: 0.75rem;
-        letter-spacing: 1.5px;
+        color: #007aff;
+        margin-bottom: 0.5rem;
+        letter-spacing: 1px;
     }
 
-    .card-title {
-        font-size: 1.6rem;
+    .app-title {
+        font-size: 1.4rem;
         font-weight: 600;
-        margin-bottom: 1rem;
-        line-height: 1.2;
+        color: #111111;
+        margin-bottom: 0.75rem;
     }
 
-    .card-description {
-        font-size: 1rem;
-        font-weight: 300;
-        color: #999999;
-        line-height: 1.6;
+    .app-desc {
+        font-size: 0.95rem;
+        color: #555555;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
         flex-grow: 1;
-        margin-bottom: 2rem;
     }
 
-    .visit-btn {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: white;
-        padding: 0.6rem 1.4rem;
-        border-radius: 14px;
+    .launch-btn {
+        background: #f0f0f0;
+        color: #333333;
+        padding: 0.5rem 1.2rem;
+        border-radius: 10px;
         font-size: 0.9rem;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        margin-top: auto;
+        font-weight: 600;
+        transition: background 0.2s;
     }
 
-    .glass-card:hover .visit-btn {
-        background: white;
-        color: black;
-        border-color: white;
+    .app-card:hover .launch-btn {
+        background: #007aff;
+        color: white;
     }
 
-    /* Hide redundant elements */
+    /* Hide Streamlit components */
     #MainMenu, footer, header, .stDeployButton {
         display: none !important;
     }
@@ -186,37 +145,32 @@ st.markdown("""
 # Hero Section
 st.markdown(f"""
 <div class="hero-container">
-    <h1 class="hero-title">{PORTAL_TITLE}</h1>
-    <p class="hero-subtitle">{PORTAL_SUBTITLE}</p>
+    <div class="hero-title">{PORTAL_TITLE}</div>
+    <div class="hero-subtitle">{PORTAL_SUBTITLE}</div>
 </div>
 """, unsafe_allow_html=True)
 
-# Layout Grid
-card_html = '<div class="card-grid">'
+# Display Apps using Streamlit Columns for maximum stability
+rows = [APPS[i:i + 3] for i in range(0, len(APPS), 3)]
 
-import os
+for row in rows:
+    cols = st.columns(3)
+    for idx, app in enumerate(row):
+        with cols[idx]:
+            # Image Processing
+            img_b64 = get_base64_of_bin_file(app["image"])
+            img_html = f'<img src="data:image/png;base64,{img_b64}" class="app-icon">' if img_b64 else ""
+            
+            # Per-card Markdown to ensure stable rendering
+            st.markdown(f"""
+            <a href="{app['url']}" target="_blank" class="app-card">
+                <div class="icon-container">{img_html}</div>
+                <div class="app-category">{app['category']}</div>
+                <div class="app-title">{app['title']}</div>
+                <div class="app-desc">{app['description']}</div>
+                <div class="launch-btn">Launch App</div>
+            </a>
+            """, unsafe_allow_html=True)
 
-for app in APPS:
-    # Converting image to base64 for embedding
-    try:
-        img_b64 = get_base64_of_bin_file(app["image"])
-        img_src = f"data:image/png;base64,{img_b64}"
-    except:
-        img_src = ""
-
-    card_html += f"""
-    <a href="{app['url']}" target="_blank" class="glass-card">
-        <div class="card-image-container">
-            <img src="{img_src}" class="card-image" alt="{app['title']}">
-        </div>
-        <div class="card-category">{app['category']}</div>
-        <div class="card-title">{app['title']}</div>
-        <div class="card-description">{app['description']}</div>
-        <div class="visit-btn">Visit App</div>
-    </a>
-    """
-
-card_html += '</div>'
-
-# Main UI Injection
-st.markdown(card_html, unsafe_allow_html=True)
+# Optional padding at bottom
+st.markdown("<div style='padding: 2rem;'></div>", unsafe_allow_html=True)
