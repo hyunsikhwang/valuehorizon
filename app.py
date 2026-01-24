@@ -74,12 +74,22 @@ st.markdown("""
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between; /* Align content across height */
-        min-height: 220px; /* Unified height */
-        text-decoration: none !important; /* Remove Underline */
+        justify-content: space-between;
+        height: 100%; /* Fill parent container */
+        min-height: 180px; /* Base height */
+        text-decoration: none !important;
         color: inherit !important;
         box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         margin-bottom: 1rem;
+    }
+
+    /* Force Streamlit elements to allow height stretching */
+    [data-testid="column"] > div, 
+    [data-testid="stVerticalBlock"] > div,
+    [data-testid="stMarkdownContainer"] {
+        height: 100% !important;
+        display: flex;
+        flex-direction: column;
     }
 
     .app-card:hover {
