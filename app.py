@@ -126,10 +126,15 @@ st.markdown("""
     }
 
     .app-title {
-        font-size: 1.15rem;
+        font-size: 1.1rem;
         font-weight: 600;
         color: #111111;
         margin-bottom: 0.75rem;
+        min-height: 2.8rem; /* Space for 2 lines */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1.2;
     }
 
     .launch-btn {
@@ -140,6 +145,7 @@ st.markdown("""
         font-size: 0.85rem;
         font-weight: 600;
         transition: all 0.2s;
+        margin-top: auto; /* Push to bottom */
     }
 
     .app-card:hover .launch-btn {
@@ -163,7 +169,6 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # Layout Grid - Using native Streamlit for stability
-# Using a fixed grid logic for better visual control
 cols_per_row = 4
 rows = [APPS[i:i + cols_per_row] for i in range(0, len(APPS), cols_per_row)]
 
@@ -175,7 +180,7 @@ for row in rows:
             img_b64 = get_base64_of_bin_file(app["image"])
             img_html = f'<img src="data:image/png;base64,{img_b64}" class="app-icon">' if img_b64 else ""
             
-            # Application Card with Tooltip (via 'title' attribute) and minimized height
+            # Application Card with Tooltip and minimized height
             st.markdown(f"""
             <a href="{app['url']}" target="_blank" class="app-card" title="{app['description']}">
                 <div class="icon-container">{img_html}</div>
