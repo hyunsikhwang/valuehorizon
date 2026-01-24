@@ -31,5 +31,5 @@ APPS = [
 ]
 
 # Portal Settings
-PORTAL_TITLE = "Equity Bridge"
+PORTAL_TITLE = "Value Horizon"
 PORTAL_SUBTITLE = "Your Premium Gateway to Intelligent Stock Investment"

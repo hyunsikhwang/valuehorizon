@@ -192,5 +192,5 @@ for row in rows:
 
 # SEO and Meta (Hidden)
 st.markdown("""
-<title>Equity Bridge</title>
+<title>Value Horizon</title>
 """, unsafe_allow_html=True)

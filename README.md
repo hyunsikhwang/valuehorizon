@@ -1,6 +1,6 @@
-# Equity Bridge (📈 에쿼티 브릿지)
+# Value Horizon (📈 밸류 호라이즌)
 
-**Equity Bridge**는 흩어져 있는 투자 관련 Streamlit 애플리케이션들을 한 곳에서 쉽고 우아하게 접근할 수 있도록 도와주는 프리미엄 포털 사이트입니다.
+**Value Horizon**은 흩어져 있는 투자 관련 Streamlit 애플리케이션들을 한 곳에서 쉽게 접근할 수 있도록 도와주는 포털 사이트입니다.
 
 ## 주요 특징 (Key Features)
 
