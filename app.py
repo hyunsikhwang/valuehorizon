@@ -38,83 +38,95 @@ st.markdown("""
         font-family: 'Outfit', sans-serif;
     }
 
+    /* Set solid background for stability */
+    .stApp {
+        background: #0e1117;
+    }
+
     .main {
-        background: transparent;
+        background: transparent !important;
     }
 
     /* Header Styling */
     .hero-container {
-        padding: 4rem 1rem;
+        padding: 6rem 1rem 4rem 1rem;
         text-align: center;
         color: white;
     }
 
     .hero-title {
-        font-size: 4.5rem;
+        font-size: 4rem;
         font-weight: 700;
         margin-bottom: 0.5rem;
-        background: linear-gradient(90deg, #ffffff, #a5a5a5);
+        background: linear-gradient(90deg, #ffffff, #888888);
         -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        letter-spacing: -2px;
+        -webkit-fill-color: transparent;
+        letter-spacing: -1.5px;
     }
 
     .hero-subtitle {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         font-weight: 300;
-        color: #cccccc;
+        color: #aaaaaa;
         max-width: 800px;
         margin: 0 auto;
     }
 
-    /* Card Grid */
+    /* Card Grid - Improved Layout */
     .card-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        padding: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2.5rem;
+        padding: 0 2rem 4rem 2rem;
         max-width: 1200px;
         margin: 0 auto;
     }
 
     /* Glass Card Styling */
     .glass-card {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 24px;
-        padding: 1.5rem;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 28px;
+        padding: 2.5rem 2rem;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         text-decoration: none;
         color: white !important;
         display: flex;
         flex-direction: column;
+        align-items: center;
+        text-align: center;
         height: 100%;
         position: relative;
-        overflow: hidden;
     }
 
     .glass-card:hover {
-        transform: translateY(-10px);
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        transform: translateY(-8px);
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
 
+    /* Icon Container - Fixed Size and Centering */
     .card-image-container {
-        width: 100%;
-        aspect-ratio: 1;
-        border-radius: 16px;
+        width: 120px;
+        height: 120px;
+        border-radius: 20%;
         overflow: hidden;
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
+        background: rgba(255, 255, 255, 0.05);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
     }
 
     .card-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.6s ease;
+        width: 80% !important;
+        height: 80% !important;
+        object-fit: contain !important;
+        transition: transform 0.5s ease;
     }
 
     .glass-card:hover .card-image {
@@ -122,82 +134,67 @@ st.markdown("""
     }
 
     .card-category {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         font-weight: 600;
         text-transform: uppercase;
-        color: #4facfe;
-        margin-bottom: 0.5rem;
-        letter-spacing: 1px;
+        color: #00d2ff;
+        margin-bottom: 0.75rem;
+        letter-spacing: 1.5px;
     }
 
     .card-title {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         font-weight: 600;
-        margin-bottom: 0.75rem;
+        margin-bottom: 1rem;
+        line-height: 1.2;
     }
 
     .card-description {
-        font-size: 0.95rem;
+        font-size: 1rem;
         font-weight: 300;
-        color: #bbbbbb;
+        color: #999999;
         line-height: 1.6;
         flex-grow: 1;
-    }
-
-    .card-footer {
-        margin-top: 1.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
+        margin-bottom: 2rem;
     }
 
     .visit-btn {
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         color: white;
-        padding: 0.5rem 1rem;
-        border-radius: 12px;
+        padding: 0.6rem 1.4rem;
+        border-radius: 14px;
         font-size: 0.9rem;
         font-weight: 500;
         transition: all 0.3s ease;
+        margin-top: auto;
     }
 
     .glass-card:hover .visit-btn {
         background: white;
         color: black;
+        border-color: white;
     }
 
-    /* Remove Streamlit default elements */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-    .stDeployButton {display:none;}
-    
-    /* Animation */
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    .fade-in {
-        animation: fadeIn 0.8s ease-out forwards;
+    /* Hide redundant elements */
+    #MainMenu, footer, header, .stDeployButton {
+        display: none !important;
     }
 </style>
 """, unsafe_allow_html=True)
 
 # Hero Section
 st.markdown(f"""
-<div class="hero-container fade-in">
+<div class="hero-container">
     <h1 class="hero-title">{PORTAL_TITLE}</h1>
     <p class="hero-subtitle">{PORTAL_SUBTITLE}</p>
 </div>
 """, unsafe_allow_html=True)
 
-# Display Apps in a Grid
-cols = st.columns(3) # Creating a grid using columns to help with layout spacing
-# But we will use custom HTML grid for better control
-
+# Layout Grid
 card_html = '<div class="card-grid">'
+
+import os
 
 for app in APPS:
     # Converting image to base64 for embedding
@@ -205,28 +202,21 @@ for app in APPS:
         img_b64 = get_base64_of_bin_file(app["image"])
         img_src = f"data:image/png;base64,{img_b64}"
     except:
-        img_src = "" # Fallback
+        img_src = ""
 
     card_html += f"""
-    <a href="{app['url']}" target="_blank" class="glass-card fade-in">
+    <a href="{app['url']}" target="_blank" class="glass-card">
         <div class="card-image-container">
             <img src="{img_src}" class="card-image" alt="{app['title']}">
         </div>
         <div class="card-category">{app['category']}</div>
         <div class="card-title">{app['title']}</div>
         <div class="card-description">{app['description']}</div>
-        <div class="card-footer">
-            <div class="visit-btn">Visit App →</div>
-        </div>
+        <div class="visit-btn">Visit App</div>
     </a>
     """
 
 card_html += '</div>'
 
+# Main UI Injection
 st.markdown(card_html, unsafe_allow_html=True)
-
-# SEO and Meta (Hidden)
-st.markdown("""
-<title>Equity Bridge - Premium Stock Investment Portal</title>
-<meta name="description" content="A centralized gateway for advanced stock market analysis and financial data monitoring tools.">
-""", unsafe_allow_html=True)
