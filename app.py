@@ -18,121 +18,121 @@ def get_base64_of_bin_file(bin_file):
         data = f.read()
     return base64.b64encode(data).decode()
 
-# Custom CSS for Light Mode and Stability
+# Custom CSS for Light Mode, Stability, and Refinement
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+    /* Minimize Streamlit Padding and Margins */
+    .block-container {
+        padding-top: 1rem !important;
+        padding-bottom: 0rem !important;
+        max-width: 1000px !important;
+    }
+    
+    [data-testid="stHeader"] {
+        display: none;
+    }
 
     /* Global Light Mode Styles */
     .stApp {
-        background-color: #fcfcfc;
+        background-color: #ffffff;
         color: #1a1a1a;
         font-family: 'Inter', sans-serif;
     }
 
-    [data-testid="stHeader"] {
-        background-color: rgba(255, 255, 255, 0);
-    }
-
-    /* Hero Section */
+    /* Hero Section - More Compact */
     .hero-container {
-        padding: 4rem 1rem 3rem 1rem;
+        padding: 1.5rem 0;
         text-align: center;
+        border-bottom: 1px solid #f0f0f0;
+        margin-bottom: 2rem;
     }
 
     .hero-title {
-        font-size: 3.5rem;
+        font-size: 2.2rem;
         font-weight: 700;
         color: #111111;
-        margin-bottom: 0.5rem;
-        letter-spacing: -1px;
+        margin-bottom: 0.25rem;
+        letter-spacing: -0.5px;
     }
 
     .hero-subtitle {
-        font-size: 1.1rem;
+        font-size: 0.95rem;
         font-weight: 400;
-        color: #666666;
-        margin-bottom: 3rem;
+        color: #888888;
     }
 
-    /* Card Styling */
+    /* Card Styling - Compact and Clean */
     .app-card {
         background: #ffffff;
-        border: 1px solid #e0e0e0;
-        border-radius: 20px;
-        padding: 2rem;
+        border: 1px solid #eaeaea;
+        border-radius: 16px;
+        padding: 1.25rem;
         text-align: center;
-        transition: all 0.3s ease;
-        height: 100%;
+        transition: all 0.25s ease;
         display: flex;
         flex-direction: column;
         align-items: center;
-        text-decoration: none;
+        text-decoration: none !important; /* Remove Underline */
         color: inherit !important;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        margin-bottom: 1rem;
     }
 
     .app-card:hover {
-        transform: translateY(-5px);
         border-color: #007aff;
-        box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+        background-color: #f9f9f9;
     }
 
-    /* Icon Styling - Small and Centered */
+    /* Icon Styling - Smaller and Centered */
     .icon-container {
-        width: 80px;
-        height: 80px;
-        margin-bottom: 1.5rem;
+        width: 60px;
+        height: 60px;
+        margin-bottom: 1rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #f8f9fa;
-        border-radius: 16px;
+        background: #fdfdfd;
+        border-radius: 12px;
     }
 
     .app-icon {
-        max-width: 50px;
-        max-height: 50px;
+        max-width: 36px;
+        max-height: 36px;
         object-fit: contain;
     }
 
     .app-category {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         font-weight: 700;
         text-transform: uppercase;
         color: #007aff;
-        margin-bottom: 0.5rem;
-        letter-spacing: 1px;
+        margin-bottom: 0.35rem;
+        letter-spacing: 0.8px;
     }
 
     .app-title {
-        font-size: 1.4rem;
+        font-size: 1.15rem;
         font-weight: 600;
         color: #111111;
         margin-bottom: 0.75rem;
     }
 
-    .app-desc {
-        font-size: 0.95rem;
-        color: #555555;
-        line-height: 1.5;
-        margin-bottom: 1.5rem;
-        flex-grow: 1;
-    }
-
     .launch-btn {
-        background: #f0f0f0;
-        color: #333333;
-        padding: 0.5rem 1.2rem;
-        border-radius: 10px;
-        font-size: 0.9rem;
+        background: #f4f4f4;
+        color: #555555;
+        padding: 0.4rem 1rem;
+        border-radius: 8px;
+        font-size: 0.85rem;
         font-weight: 600;
-        transition: background 0.2s;
+        transition: all 0.2s;
     }
 
     .app-card:hover .launch-btn {
         background: #007aff;
-        color: white;
+        color: #ffffff;
     }
 
     /* Hide Streamlit components */
@@ -150,27 +150,30 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# Display Apps using Streamlit Columns for maximum stability
-rows = [APPS[i:i + 3] for i in range(0, len(APPS), 3)]
+# Layout Grid - Using native Streamlit for stability
+# Using a fixed grid logic for better visual control
+cols_per_row = 4
+rows = [APPS[i:i + cols_per_row] for i in range(0, len(APPS), cols_per_row)]
 
 for row in rows:
-    cols = st.columns(3)
+    cols = st.columns(cols_per_row)
     for idx, app in enumerate(row):
         with cols[idx]:
             # Image Processing
             img_b64 = get_base64_of_bin_file(app["image"])
             img_html = f'<img src="data:image/png;base64,{img_b64}" class="app-icon">' if img_b64 else ""
             
-            # Per-card Markdown to ensure stable rendering
+            # Application Card with Tooltip (via 'title' attribute) and minimized height
             st.markdown(f"""
-            <a href="{app['url']}" target="_blank" class="app-card">
+            <a href="{app['url']}" target="_blank" class="app-card" title="{app['description']}">
                 <div class="icon-container">{img_html}</div>
                 <div class="app-category">{app['category']}</div>
                 <div class="app-title">{app['title']}</div>
-                <div class="app-desc">{app['description']}</div>
                 <div class="launch-btn">Launch App</div>
             </a>
             """, unsafe_allow_html=True)
 
-# Optional padding at bottom
-st.markdown("<div style='padding: 2rem;'></div>", unsafe_allow_html=True)
+# SEO and Meta (Hidden)
+st.markdown("""
+<title>Equity Bridge</title>
+""", unsafe_allow_html=True)
