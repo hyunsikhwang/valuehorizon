@@ -74,6 +74,8 @@ st.markdown("""
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: space-between; /* Align content across height */
+        min-height: 220px; /* Unified height */
         text-decoration: none !important; /* Remove Underline */
         color: inherit !important;
         box-shadow: 0 2px 4px rgba(0,0,0,0.02);
