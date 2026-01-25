@@ -27,6 +27,13 @@ APPS = [
         "description": "Streamlined search for corporate filings and regulatory disclosures.",
         "image": "assets/search_dart.png",
         "category": "Corporate Filings"
+    },
+    {
+        "title": "Stock Performance",
+        "url": "https://stocktracking.streamlit.app/",
+        "description": "Detailed tracking and visualization of stock price performance and trends.",
+        "image": "assets/stock_performance.png",
+        "category": "Performance Analysis"
     }
 ]
 
