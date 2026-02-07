@@ -6,7 +6,7 @@ from config import APPS, PORTAL_TITLE, PORTAL_SUBTITLE
 # Page Configuration
 st.set_page_config(
     page_title=PORTAL_TITLE,
-    page_icon="📈",
+    page_icon="valuehorizon.png",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -61,6 +61,18 @@ st.markdown("""
         font-size: 0.95rem;
         font-weight: 400;
         color: #888888;
+    }
+
+    .hero-logo-container {
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    .hero-logo {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
     }
 
     /* Card Styling - Compact and Clean */
@@ -161,8 +173,12 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Hero Section
+logo_b64 = get_base64_of_bin_file("valuehorizon.png")
+logo_html = f'<div class="hero-logo-container"><img src="data:image/png;base64,{logo_b64}" class="hero-logo"></div>' if logo_b64 else ""
+
 st.markdown(f"""
 <div class="hero-container">
+    {logo_html}
     <div class="hero-title">{PORTAL_TITLE}</div>
     <div class="hero-subtitle">{PORTAL_SUBTITLE}</div>
 </div>
