@@ -61,17 +61,20 @@ st.markdown("""
         font-size: 0.95rem;
         font-weight: 400;
         color: #888888;
+        margin-top: -0.25rem;
     }
 
-    .hero-logo-container {
-        margin-bottom: 1rem;
+    .hero-brand {
         display: flex;
+        align-items: center;
         justify-content: center;
+        gap: 0.75rem;
+        margin-bottom: 0.25rem;
     }
 
     .hero-logo {
-        width: 80px;
-        height: 80px;
+        width: 42px;
+        height: 42px;
         object-fit: contain;
     }
 
@@ -174,12 +177,14 @@ st.markdown("""
 
 # Hero Section
 logo_b64 = get_base64_of_bin_file("valuehorizon.png")
-logo_html = f'<div class="hero-logo-container"><img src="data:image/png;base64,{logo_b64}" class="hero-logo"></div>' if logo_b64 else ""
+logo_html = f'<img src="data:image/png;base64,{logo_b64}" class="hero-logo">' if logo_b64 else ""
 
 st.markdown(f"""
 <div class="hero-container">
-    {logo_html}
-    <div class="hero-title">{PORTAL_TITLE}</div>
+    <div class="hero-brand">
+        {logo_html}
+        <div class="hero-title">{PORTAL_TITLE}</div>
+    </div>
     <div class="hero-subtitle">{PORTAL_SUBTITLE}</div>
 </div>
 """, unsafe_allow_html=True)
