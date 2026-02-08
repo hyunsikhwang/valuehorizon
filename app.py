@@ -67,13 +67,13 @@ st.markdown("""
         background: rgba(30, 41, 59, 0.7);
         backdrop-filter: blur(12px);
         border: 1px solid rgba(255, 255, 255, 0.05);
-        border-radius: 1.5rem;
+        border-radius: 1.25rem;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 1;
         flex: 1 !important;
         display: flex !important;
         flex-direction: column !important;
-        min-height: 480px; /* Ensure a consistent minimum height */
+        min-height: 340px; /* Reduced from 480px */
     }
     
     .premium-border::after {
@@ -101,21 +101,21 @@ st.markdown("""
     /* Hero Section */
     .hero-container {
         text-align: center;
-        margin-bottom: 5rem;
+        margin-bottom: 3.5rem; /* Reduced from 5rem */
     }
 
     .hero-brand {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 1.5rem;
-        margin-bottom: 1.5rem;
+        gap: 1.25rem;
+        margin-bottom: 1rem;
     }
 
     .hero-logo-container {
-        padding: 0.75rem;
+        padding: 0.5rem;
         background: rgba(255, 255, 255, 0.03);
-        border-radius: 1.25rem;
+        border-radius: 1rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -123,14 +123,14 @@ st.markdown("""
     }
 
     .hero-logo {
-        width: 48px;
-        height: 48px;
+        width: 40px;
+        height: 40px;
         object-fit: contain;
     }
 
     .hero-title {
         font-family: 'Outfit', sans-serif;
-        font-size: 3.5rem;
+        font-size: 3rem; /* Reduced from 3.5rem */
         font-weight: 700;
         letter-spacing: -0.02em;
         color: #f8fafc;
@@ -141,26 +141,26 @@ st.markdown("""
     }
 
     .hero-subtitle {
-        font-size: 1.25rem;
+        font-size: 1.1rem; /* Reduced from 1.25rem */
         color: #94a3b8;
         font-weight: 300;
-        max-width: 600px;
+        max-width: 500px;
         margin: 0 auto;
-        line-height: 1.6;
+        line-height: 1.5;
     }
 
     .hero-divider {
-        height: 4px;
-        width: 80px;
+        height: 3px;
+        width: 60px;
         background: linear-gradient(to right, #3b82f6, #fbbf24);
-        margin: 2rem auto 0;
+        margin: 1.5rem auto 0;
         border-radius: 2px;
-        opacity: 0.8;
+        opacity: 0.6;
     }
 
     /* Card Specifics */
     .app-card {
-        padding: 2.5rem 2rem;
+        padding: 1.5rem; /* Reduced from 2.5rem 2rem */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -172,10 +172,10 @@ st.markdown("""
     }
 
     .app-icon-container {
-        padding: 1.25rem;
+        padding: 1rem;
         background: rgba(255, 255, 255, 0.03);
-        border-radius: 1rem;
-        margin-bottom: 1.5rem;
+        border-radius: 0.75rem;
+        margin-bottom: 1rem; /* Reduced from 1.5rem */
         transition: transform 0.3s ease;
     }
 
@@ -184,41 +184,41 @@ st.markdown("""
     }
 
     .app-icon-container .material-symbols-outlined {
-        font-size: 2.5rem;
+        font-size: 2rem; /* Reduced from 2.5rem */
     }
 
     .app-category {
-        font-size: 0.75rem;
+        font-size: 0.7rem; /* Reduced from 0.75rem */
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.2em;
-        margin-bottom: 0.75rem;
-        opacity: 0.8;
+        letter-spacing: 0.15em;
+        margin-bottom: 0.5rem; /* Reduced from 0.75rem */
+        opacity: 0.6;
         min-height: 1rem;
     }
 
     .app-title {
         font-family: 'Outfit', sans-serif;
-        font-size: 1.5rem;
+        font-size: 1.25rem; /* Reduced from 1.5rem */
         font-weight: 600;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem; /* Reduced from 2rem */
         color: #f1f5f9;
         line-height: 1.2;
         flex-grow: 1;
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: 4rem; /* Ensure consistent text area */
+        min-height: 3.5rem; /* Reduced from 4rem */
     }
 
     .launch-btn {
         width: 100%;
-        padding: 0.875rem;
+        padding: 0.75rem; /* Reduced from 0.875rem */
         background: #3b82f6;
         color: white;
-        border-radius: 0.75rem;
+        border-radius: 0.6rem;
         font-weight: 600;
-        font-size: 1rem;
+        font-size: 0.9rem; /* Reduced from 1rem */
         display: flex;
         align-items: center;
         justify-content: center;
