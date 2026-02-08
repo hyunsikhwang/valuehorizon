@@ -18,178 +18,254 @@ def get_base64_of_bin_file(bin_file):
         data = f.read()
     return base64.b64encode(data).decode()
 
-# Custom CSS for Light Mode, Stability, and Refinement
+# Premium CSS Injection
 st.markdown("""
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 
-    /* Minimize Streamlit Padding and Margins */
-    .block-container {
-        padding-top: 1rem !important;
-        padding-bottom: 0rem !important;
-        max-width: 1000px !important;
-    }
+<style>
+    /* Reset and Global Styles */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap');
     
+    .stApp {
+        background-color: #0f172a;
+        color: #f1f5f9;
+        font-family: 'Inter', sans-serif;
+    }
+
     [data-testid="stHeader"] {
         display: none;
     }
 
-    /* Global Light Mode Styles */
-    .stApp {
-        background-color: #ffffff;
-        color: #1a1a1a;
-        font-family: 'Inter', sans-serif;
+    .block-container {
+        padding-top: 4rem !important;
+        padding-bottom: 4rem !important;
+        max-width: 1200px !important;
     }
 
-    /* Hero Section - More Compact */
+    /* Premium Border & Glassmorphism */
+    .premium-border {
+        position: relative;
+        background: rgba(30, 41, 59, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 1.5rem;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1;
+    }
+    
+    .premium-border::after {
+        content: '';
+        position: absolute;
+        inset: -1px;
+        background: linear-gradient(135deg, rgba(251, 191, 36, 0.3), rgba(59, 130, 246, 0.3));
+        z-index: -1;
+        border-radius: inherit;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+    
+    .premium-border:hover {
+        transform: translateY(-8px);
+        background: rgba(30, 41, 59, 0.9);
+        border-color: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+    
+    .premium-border:hover::after {
+        opacity: 1;
+    }
+
+    /* Hero Section */
     .hero-container {
-        padding: 1.5rem 0;
         text-align: center;
-        border-bottom: 1px solid #f0f0f0;
-        margin-bottom: 2rem;
-    }
-
-    .hero-title {
-        font-size: 2.2rem;
-        font-weight: 700;
-        color: #111111;
-        margin-bottom: 0.25rem;
-        letter-spacing: -0.5px;
-    }
-
-    .hero-subtitle {
-        font-size: 0.95rem;
-        font-weight: 400;
-        color: #888888;
-        margin-top: -0.25rem;
+        margin-bottom: 5rem;
     }
 
     .hero-brand {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 0.75rem;
-        margin-bottom: 0.25rem;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-logo-container {
+        padding: 0.75rem;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .hero-logo {
-        width: 42px;
-        height: 42px;
+        width: 48px;
+        height: 48px;
         object-fit: contain;
     }
 
-    /* Card Styling - Compact and Clean */
+    .hero-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: 3.5rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: #f8fafc;
+    }
+
+    .hero-title span {
+        color: #3b82f6;
+    }
+
+    .hero-subtitle {
+        font-size: 1.25rem;
+        color: #94a3b8;
+        font-weight: 300;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    .hero-divider {
+        height: 4px;
+        width: 80px;
+        background: linear-gradient(to right, #3b82f6, #fbbf24);
+        margin: 2rem auto 0;
+        border-radius: 2px;
+        opacity: 0.8;
+    }
+
+    /* Card Specifics */
     .app-card {
-        background: #ffffff;
-        border: 1px solid #eaeaea;
-        border-radius: 16px;
-        padding: 1.25rem;
-        text-align: center;
-        transition: all 0.25s ease;
+        padding: 2.5rem 2rem;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
-        height: 100%; /* Fill parent container */
-        min-height: 180px; /* Base height */
+        text-align: center;
+        height: 100%;
         text-decoration: none !important;
         color: inherit !important;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-        margin-bottom: 1rem;
     }
 
-    /* Force Streamlit elements to allow height stretching */
-    [data-testid="column"] > div, 
-    [data-testid="stVerticalBlock"] > div,
-    [data-testid="stMarkdownContainer"] {
-        height: 100% !important;
-        display: flex;
-        flex-direction: column;
+    .app-icon-container {
+        padding: 1.25rem;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 1rem;
+        margin-bottom: 1.5rem;
+        transition: transform 0.3s ease;
     }
 
-    .app-card:hover {
-        border-color: #007aff;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.06);
-        background-color: #f9f9f9;
+    .app-card:hover .app-icon-container {
+        transform: scale(1.1);
     }
 
-    /* Icon Styling - Smaller and Centered */
-    .icon-container {
-        width: 60px;
-        height: 60px;
-        margin-bottom: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #fdfdfd;
-        border-radius: 12px;
-    }
-
-    .app-icon {
-        max-width: 36px;
-        max-height: 36px;
-        object-fit: contain;
+    .app-icon-container .material-symbols-outlined {
+        font-size: 2.5rem;
     }
 
     .app-category {
-        font-size: 0.65rem;
+        font-size: 0.75rem;
         font-weight: 700;
         text-transform: uppercase;
-        color: #007aff;
-        margin-bottom: 0.35rem;
-        letter-spacing: 0.8px;
+        letter-spacing: 0.2em;
+        margin-bottom: 0.75rem;
+        opacity: 0.8;
     }
 
     .app-title {
-        font-size: 1.1rem;
+        font-family: 'Outfit', sans-serif;
+        font-size: 1.5rem;
         font-weight: 600;
-        color: #111111;
-        margin-bottom: 0.75rem;
-        min-height: 2.8rem; /* Space for 2 lines */
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        margin-bottom: 2rem;
+        color: #f1f5f9;
         line-height: 1.2;
     }
 
     .launch-btn {
-        background: #f4f4f4;
-        color: #555555;
-        padding: 0.4rem 1rem;
-        border-radius: 8px;
-        font-size: 0.85rem;
+        width: 100%;
+        padding: 0.875rem;
+        background: #3b82f6;
+        color: white;
+        border-radius: 0.75rem;
         font-weight: 600;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
         transition: all 0.2s;
-        margin-top: auto; /* Push to bottom */
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
     }
 
     .app-card:hover .launch-btn {
-        background: #007aff;
-        color: #ffffff;
+        background: #2563eb;
+        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
     }
 
-    /* Hide Streamlit components */
+    /* Coming Soon Card */
+    .coming-soon-card {
+        background: rgba(255, 255, 255, 0.02);
+        border: 2px dashed rgba(255, 255, 255, 0.1);
+        border-radius: 1.5rem;
+        padding: 2.5rem 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height: 100%;
+        color: #64748b;
+    }
+
+    .coming-soon-card .material-symbols-outlined {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        opacity: 0.5;
+    }
+
+    /* Footer */
+    .footer {
+        margin-top: 6rem;
+        text-align: center;
+        color: #475569;
+        font-size: 0.875rem;
+    }
+
+    /* Hide Streamlit elements */
     #MainMenu, footer, header, .stDeployButton {
         display: none !important;
     }
 </style>
 """, unsafe_allow_html=True)
 
+# Helper for Icon Mapping
+def get_icon_for_app(title):
+    mapping = {
+        "Daily K-Stock": {"icon": "monitoring", "color": "#3b82f6"},
+        "Global Market Pulse": {"icon": "public", "color": "#a855f7"},
+        "KRX Market Monitor": {"icon": "account_balance", "color": "#10b981"},
+        "Search DART": {"icon": "description", "color": "#f59e0b"},
+        "Stock Performance": {"icon": "query_stats", "color": "#fbbf24"},
+    }
+    return mapping.get(title, {"icon": "apps", "color": "#3b82f6"})
+
 # Hero Section
 logo_b64 = get_base64_of_bin_file("valuehorizon.png")
-logo_html = f'<img src="data:image/png;base64,{logo_b64}" class="hero-logo">' if logo_b64 else ""
+logo_html = f'<div class="hero-logo-container"><img src="data:image/png;base64,{logo_b64}" class="hero-logo"></div>' if logo_b64 else ""
 
 st.markdown(f"""
 <div class="hero-container">
     <div class="hero-brand">
         {logo_html}
-        <div class="hero-title">{PORTAL_TITLE}</div>
+        <div class="hero-title">Value <span>Horizon</span></div>
     </div>
     <div class="hero-subtitle">{PORTAL_SUBTITLE}</div>
+    <div class="hero-divider"></div>
 </div>
 """, unsafe_allow_html=True)
 
-# Layout Grid - Using native Streamlit for stability
+# App Grid
 cols_per_row = 4
 rows = [APPS[i:i + cols_per_row] for i in range(0, len(APPS), cols_per_row)]
 
@@ -197,21 +273,46 @@ for row in rows:
     cols = st.columns(cols_per_row)
     for idx, app in enumerate(row):
         with cols[idx]:
-            # Image Processing
-            img_b64 = get_base64_of_bin_file(app["image"])
-            img_html = f'<img src="data:image/png;base64,{img_b64}" class="app-icon">' if img_b64 else ""
-            
-            # Application Card with Tooltip and minimized height
+            app_meta = get_icon_for_app(app["title"])
             st.markdown(f"""
-            <a href="{app['url']}" target="_blank" class="app-card" title="{app['description']}">
-                <div class="icon-container">{img_html}</div>
-                <div class="app-category">{app['category']}</div>
+            <a href="{app['url']}" target="_blank" class="premium-border app-card">
+                <div class="app-icon-container">
+                    <span class="material-symbols-outlined" style="color: {app_meta['color']}">
+                        {app_meta['icon']}
+                    </span>
+                </div>
+                <div class="app-category" style="color: {app_meta['color']}">{app['category']}</div>
                 <div class="app-title">{app['title']}</div>
-                <div class="launch-btn">Launch App</div>
+                <div class="launch-btn">
+                    Launch App
+                    <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+                </div>
             </a>
             """, unsafe_allow_html=True)
+    
+    # Add "Coming Soon" card if the row is not full or at the end
+    if len(row) < cols_per_row:
+        for i in range(len(row), cols_per_row):
+            with cols[i]:
+                st.markdown("""
+                <div class="coming-soon-card">
+                    <span class="material-symbols-outlined">add_circle</span>
+                    <p style="font-style: italic; font-weight: 500;">More modules coming soon</p>
+                </div>
+                """, unsafe_allow_html=True)
+    elif row == rows[-1]: # If it's the last row and it was full, add a new row with Coming Soon
+        cols = st.columns(cols_per_row)
+        with cols[0]:
+            st.markdown("""
+            <div class="coming-soon-card">
+                <span class="material-symbols-outlined">add_circle</span>
+                <p style="font-style: italic; font-weight: 500;">More modules coming soon</p>
+            </div>
+            """, unsafe_allow_html=True)
 
-# SEO and Meta (Hidden)
+# Footer
 st.markdown("""
-<title>Value Horizon</title>
+<div class="footer">
+    © 2024 Value Horizon. Professional Trading Ecosystem.
+</div>
 """, unsafe_allow_html=True)
