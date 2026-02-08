@@ -43,11 +43,35 @@ st.markdown("""
         max-width: 1200px !important;
     }
 
-    /* Force Streamlit columns to stretch */
+    /* More aggressive targeting for Streamlit column alignment */
+    [data-testid="column"] {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
     [data-testid="column"] > div {
-        height: 100% !important;
-        display: flex;
-        flex-direction: column;
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    [data-testid="stVerticalBlock"] {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    /* Wrap the markdown component itself */
+    div.stMarkdown {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    div.stMarkdown > div {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
     }
 
     /* Premium Border & Glassmorphism */
@@ -59,9 +83,9 @@ st.markdown("""
         border-radius: 1.5rem;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 1;
-        height: 100%; /* Ensure card fills column */
-        display: flex;
-        flex-direction: column;
+        flex: 1 !important; /* Force card to fill container */
+        display: flex !important;
+        flex-direction: column !important;
     }
     
     .premium-border::after {
