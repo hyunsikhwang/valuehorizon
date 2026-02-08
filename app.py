@@ -74,6 +74,7 @@ st.markdown("""
         display: flex !important;
         flex-direction: column !important;
         min-height: 340px; /* Reduced from 480px */
+        margin-bottom: 2rem; /* Added gap between rows */
     }
     
     .premium-border::after {
@@ -247,6 +248,7 @@ st.markdown("""
         height: 100%;
         color: #475569;
         min-height: 340px; /* Matched to regular cards */
+        margin-bottom: 2rem; /* Added gap between rows */
     }
 
     .coming-soon-card .material-symbols-outlined {
