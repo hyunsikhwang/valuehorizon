@@ -43,6 +43,13 @@ st.markdown("""
         max-width: 1200px !important;
     }
 
+    /* Force Streamlit columns to stretch */
+    [data-testid="column"] > div {
+        height: 100% !important;
+        display: flex;
+        flex-direction: column;
+    }
+
     /* Premium Border & Glassmorphism */
     .premium-border {
         position: relative;
@@ -52,6 +59,9 @@ st.markdown("""
         border-radius: 1.5rem;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 1;
+        height: 100%; /* Ensure card fills column */
+        display: flex;
+        flex-direction: column;
     }
     
     .premium-border::after {
@@ -180,6 +190,10 @@ st.markdown("""
         margin-bottom: 2rem;
         color: #f1f5f9;
         line-height: 1.2;
+        flex-grow: 1; /* Allow title to grow and push button down */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .launch-btn {
@@ -196,6 +210,7 @@ st.markdown("""
         gap: 0.5rem;
         transition: all 0.2s;
         box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        margin-top: auto; /* Push to bottom */
     }
 
     .app-card:hover .launch-btn {
