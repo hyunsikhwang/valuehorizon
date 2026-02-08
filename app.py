@@ -49,29 +49,16 @@ st.markdown("""
         flex-direction: column !important;
     }
     
-    [data-testid="column"] > div {
+    [data-testid="column"] > div, 
+    [data-testid="column"] > div > div, 
+    [data-testid="column"] [data-testid="stVerticalBlock"],
+    [data-testid="column"] [data-testid="stVerticalBlock"] > div,
+    [data-testid="column"] .stMarkdown,
+    [data-testid="column"] .stMarkdown > div {
         flex: 1 !important;
         display: flex !important;
         flex-direction: column !important;
-    }
-
-    [data-testid="stVerticalBlock"] {
-        flex: 1 !important;
-        display: flex !important;
-        flex-direction: column !important;
-    }
-
-    /* Wrap the markdown component itself */
-    div.stMarkdown {
-        flex: 1 !important;
-        display: flex !important;
-        flex-direction: column !important;
-    }
-
-    div.stMarkdown > div {
-        flex: 1 !important;
-        display: flex !important;
-        flex-direction: column !important;
+        height: 100% !important;
     }
 
     /* Premium Border & Glassmorphism */
@@ -83,9 +70,10 @@ st.markdown("""
         border-radius: 1.5rem;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 1;
-        flex: 1 !important; /* Force card to fill container */
+        flex: 1 !important;
         display: flex !important;
         flex-direction: column !important;
+        min-height: 480px; /* Ensure a consistent minimum height */
     }
     
     .premium-border::after {
@@ -180,6 +168,7 @@ st.markdown("""
         height: 100%;
         text-decoration: none !important;
         color: inherit !important;
+        flex: 1;
     }
 
     .app-icon-container {
@@ -205,6 +194,7 @@ st.markdown("""
         letter-spacing: 0.2em;
         margin-bottom: 0.75rem;
         opacity: 0.8;
+        min-height: 1rem;
     }
 
     .app-title {
@@ -214,10 +204,11 @@ st.markdown("""
         margin-bottom: 2rem;
         color: #f1f5f9;
         line-height: 1.2;
-        flex-grow: 1; /* Allow title to grow and push button down */
+        flex-grow: 1;
         display: flex;
         align-items: center;
         justify-content: center;
+        min-height: 4rem; /* Ensure consistent text area */
     }
 
     .launch-btn {
@@ -234,7 +225,7 @@ st.markdown("""
         gap: 0.5rem;
         transition: all 0.2s;
         box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
-        margin-top: auto; /* Push to bottom */
+        margin-top: auto;
     }
 
     .app-card:hover .launch-btn {
