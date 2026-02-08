@@ -236,16 +236,17 @@ st.markdown("""
     /* Coming Soon Card */
     .coming-soon-card {
         background: rgba(255, 255, 255, 0.02);
-        border: 2px dashed rgba(255, 255, 255, 0.1);
-        border-radius: 1.5rem;
-        padding: 2.5rem 2rem;
+        border: 2px dashed rgba(255, 255, 255, 0.08);
+        border-radius: 1.25rem;
+        padding: 1.5rem;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
         height: 100%;
-        color: #64748b;
+        color: #475569;
+        min-height: 340px; /* Matched to regular cards */
     }
 
     .coming-soon-card .material-symbols-outlined {
