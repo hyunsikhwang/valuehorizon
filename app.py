@@ -26,10 +26,31 @@ st.markdown("""
 <style>
     /* Reset and Global Styles */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap');
+
+    :root {
+        --page-bg: #f8fafc;
+        --page-bg-accent: #eef4ff;
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --text-tertiary: #64748b;
+        --card-bg: rgba(255, 255, 255, 0.82);
+        --card-bg-hover: rgba(255, 255, 255, 0.96);
+        --card-border: rgba(148, 163, 184, 0.22);
+        --card-border-hover: rgba(59, 130, 246, 0.24);
+        --surface-soft: rgba(255, 255, 255, 0.74);
+        --surface-muted: rgba(226, 232, 240, 0.38);
+        --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.08);
+        --shadow-hover: 0 24px 50px rgba(59, 130, 246, 0.18);
+        --accent-blue: #3b82f6;
+        --accent-blue-hover: #2563eb;
+        --accent-gold: #fbbf24;
+    }
     
     .stApp {
-        background-color: #0f172a;
-        color: #f1f5f9;
+        background:
+            radial-gradient(circle at top, var(--page-bg-accent), transparent 38%),
+            linear-gradient(180deg, #ffffff 0%, var(--page-bg) 55%, #f1f5f9 100%);
+        color: var(--text-primary);
         font-family: 'Inter', sans-serif;
     }
 
@@ -64,9 +85,9 @@ st.markdown("""
     /* Premium Border & Glassmorphism */
     .premium-border {
         position: relative;
-        background: rgba(30, 41, 59, 0.7);
+        background: var(--card-bg);
         backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--card-border);
         border-radius: 1.25rem;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 1;
@@ -75,13 +96,14 @@ st.markdown("""
         flex-direction: column !important;
         min-height: 340px; /* Reduced from 480px */
         margin-bottom: 1rem; /* Added gap between rows */
+        box-shadow: var(--shadow-soft);
     }
     
     .premium-border::after {
         content: '';
         position: absolute;
         inset: -1px;
-        background: linear-gradient(135deg, rgba(251, 191, 36, 0.3), rgba(59, 130, 246, 0.3));
+        background: linear-gradient(135deg, rgba(251, 191, 36, 0.16), rgba(59, 130, 246, 0.18));
         z-index: -1;
         border-radius: inherit;
         opacity: 0;
@@ -90,9 +112,9 @@ st.markdown("""
     
     .premium-border:hover {
         transform: translateY(-8px);
-        background: rgba(30, 41, 59, 0.9);
-        border-color: rgba(255, 255, 255, 0.1);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        background: var(--card-bg-hover);
+        border-color: var(--card-border-hover);
+        box-shadow: var(--shadow-hover);
     }
     
     .premium-border:hover::after {
@@ -115,12 +137,13 @@ st.markdown("""
 
     .hero-logo-container {
         padding: 0.5rem;
-        background: rgba(255, 255, 255, 0.03);
+        background: var(--surface-soft);
         border-radius: 1rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
     }
 
     .hero-logo {
@@ -134,16 +157,16 @@ st.markdown("""
         font-size: 3rem; /* Reduced from 3.5rem */
         font-weight: 700;
         letter-spacing: -0.02em;
-        color: #f8fafc;
+        color: var(--text-primary);
     }
 
     .hero-title span {
-        color: #3b82f6;
+        color: var(--accent-blue);
     }
 
     .hero-subtitle {
         font-size: 1.1rem; /* Reduced from 1.25rem */
-        color: #94a3b8;
+        color: var(--text-secondary);
         font-weight: 300;
         max-width: 500px;
         margin: 0 auto;
@@ -153,10 +176,10 @@ st.markdown("""
     .hero-divider {
         height: 3px;
         width: 60px;
-        background: linear-gradient(to right, #3b82f6, #fbbf24);
+        background: linear-gradient(to right, var(--accent-blue), var(--accent-gold));
         margin: 1.5rem auto 0;
         border-radius: 2px;
-        opacity: 0.6;
+        opacity: 0.8;
     }
 
     /* Card Specifics */
@@ -174,10 +197,11 @@ st.markdown("""
 
     .app-icon-container {
         padding: 1rem;
-        background: rgba(255, 255, 255, 0.03);
+        background: var(--surface-muted);
         border-radius: 0.75rem;
         margin-bottom: 1rem; /* Reduced from 1.5rem */
         transition: transform 0.3s ease;
+        border: 1px solid rgba(148, 163, 184, 0.14);
     }
 
     .app-card:hover .app-icon-container {
@@ -203,7 +227,7 @@ st.markdown("""
         font-size: 1.25rem; /* Reduced from 1.5rem */
         font-weight: 600;
         margin-bottom: 1.5rem; /* Reduced from 2rem */
-        color: #f1f5f9;
+        color: var(--text-primary);
         line-height: 1.2;
         flex-grow: 1;
         display: flex;
@@ -215,7 +239,7 @@ st.markdown("""
     .launch-btn {
         width: 100%;
         padding: 0.75rem; /* Reduced from 0.875rem */
-        background: #3b82f6;
+        background: var(--accent-blue);
         color: white;
         border-radius: 0.6rem;
         font-weight: 600;
@@ -225,19 +249,19 @@ st.markdown("""
         justify-content: center;
         gap: 0.5rem;
         transition: all 0.2s;
-        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        box-shadow: 0 10px 22px rgba(59, 130, 246, 0.22);
         margin-top: auto;
     }
 
     .app-card:hover .launch-btn {
-        background: #2563eb;
-        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+        background: var(--accent-blue-hover);
+        box-shadow: 0 14px 28px rgba(37, 99, 235, 0.28);
     }
 
     /* Coming Soon Card */
     .coming-soon-card {
-        background: rgba(255, 255, 255, 0.02);
-        border: 2px dashed rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.66);
+        border: 2px dashed rgba(148, 163, 184, 0.3);
         border-radius: 1.25rem;
         padding: 1.5rem;
         display: flex;
@@ -246,9 +270,10 @@ st.markdown("""
         justify-content: center;
         text-align: center;
         height: 100%;
-        color: #475569;
+        color: var(--text-tertiary);
         min-height: 340px; /* Matched to regular cards */
         margin-bottom: 1rem; /* Added gap between rows */
+        box-shadow: 0 16px 36px rgba(15, 23, 42, 0.06);
     }
 
     .coming-soon-card .material-symbols-outlined {
@@ -261,7 +286,7 @@ st.markdown("""
     .footer {
         margin-top: 6rem;
         text-align: center;
-        color: #475569;
+        color: var(--text-secondary);
         font-size: 0.875rem;
     }
 
