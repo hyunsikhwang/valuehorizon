@@ -1,7 +1,6 @@
 import streamlit as st
 import base64
 import os
-from datetime import timedelta
 from config import APPS, PORTAL_TITLE, PORTAL_SUBTITLE
 
 # Page Configuration
@@ -11,14 +10,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed"
 )
-
-
-@st.fragment(run_every=timedelta(seconds=30))
-def keep_alive():
-    pass
-
-
-keep_alive()
 
 def get_base64_of_bin_file(bin_file):
     if not os.path.exists(bin_file):
