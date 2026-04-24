@@ -94,7 +94,7 @@ st.markdown("""
         flex: 1 !important;
         display: flex !important;
         flex-direction: column !important;
-        min-height: 340px; /* Reduced from 480px */
+        min-height: 320px; /* Reduced from 340px */
         margin-bottom: 1rem; /* Added gap between rows */
         box-shadow: var(--shadow-soft);
     }
@@ -271,7 +271,7 @@ st.markdown("""
         text-align: center;
         height: 100%;
         color: var(--text-tertiary);
-        min-height: 340px; /* Matched to regular cards */
+        min-height: 320px; /* Matched to regular cards */
         margin-bottom: 1rem; /* Added gap between rows */
         box-shadow: 0 16px 36px rgba(15, 23, 42, 0.06);
     }
